@@ -1,0 +1,165 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="{% static 'js/form.js' %}" defer></script>
+    <title>App</title>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="">App</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/app">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/app/graphs">Over-All-Graphs</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+
+  <!-- MODAL -->
+  <div class="modal" tabindex="-1" id="form-modal" tabindex="-1" aria-labelledby="form-modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Data - Form</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <section id="form">
+
+            <div class="container mt-2">
+                <form action="" method="POST">
+                
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                      <label for="target" class="form-label">Target ?</label>
+                      {{ form.target }}
+                      <div id="target-help" class="form-text">What is your Today's Target ?</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                      <label for="achieved" class="form-label">Achievement ?</label>
+                      {{ form.achieved }}
+                      <div id="achieved-help" class="form-text">What is your Today's Achievement ?</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="error" class="form-label">Error ?</label>
+                        {{ form.error }}
+                        <div id="error-help" class="form-text">What is your Today's Error ?</div>
+                    </div>
+        
+                    <div class="mb-3">
+                      <label for="work-time" class="form-label">Work Period ?</label>
+                      {{ form.work_time }}
+                      <div id="work-time-help" class="form-text">What is your current work period ?</div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="date" class="form-label">Work Date ?</label>
+                      {{ form.date }}
+                      <div id="work-time-help" class="form-text">What is your current work date ?</div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="time" class="form-label">Work Time ?</label>
+                      {{ form.time }}
+                      <div id="work-time-help" class="form-text">What is your current work time ?</div>
+                    </div>
+                  
+                    <button type="submit" id="sub-btn" class="btn btn-primary">Save Changes</button>
+
+                </form>
+            </div>
+    
+          </section>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-sm-6">
+        <canvas id="graph1" width="200" height="100" ></canvas>
+      </div>
+      <div class="col-sm-6">
+        <canvas id="graph2" width="200" height="100" ></canvas>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <canvas id="graph3" width="100" height="100" ></canvas>
+      </div>
+      <div class="col-sm-6">
+        <canvas id="graph4" width="100" height="100" ></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script >
+
+    const months = {
+      "1" : "January",
+      "2" : "February",
+      "3" : "March",
+      "4" : "April",
+      "5" : "May",
+      "6" : "June",
+      "7" : "July",
+      "8" : "August",
+      "9" : "September",
+      "10" : "October",
+      "11" : "November",
+      "12" : "December"
+    }
+
+    const date_process = (date) => {
+      if(date[0] == '0'){
+        return date[1];
+      }
+      else{
+        return date;
+      }
+    }
+
+    $(document).ready(() => {
+        $("#work-time").val("{{ shift }}");
+        
+        var date = "{{ date }}".split("-");
+  
+        document.getElementById("id_date_year").value = date[0];
+        document.getElementById("id_date_day").value = date_process(date[2]);
+        document.getElementById("id_date_month").value = date_process(date[1]);
+          
+    });
+
+  </script>
+
+</body>
+</html>
