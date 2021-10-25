@@ -1,6 +1,6 @@
 from django import forms
-from django.forms import ModelForm, fields
-from django.forms.widgets import DateInput, TextInput,TimeInput
+from django.forms import ModelForm
+from django.forms.widgets import TextInput,TimeInput
 from .models import TargetModel
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm

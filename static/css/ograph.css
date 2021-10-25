@@ -3,7 +3,7 @@ html {
     margin: 0;
     padding: 0;
     width: 100%;
-    background: linear-gradient(to bottom left, #ffff00 0%, #ff9900 77%) !important;
+    background-image: url("../img/graph.jpg") !important;
     background-repeat: no-repeat;
     background-size: cover;
 }

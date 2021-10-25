@@ -76,6 +76,8 @@ $.ajax({
         let ograph1 = document.getElementById("ograph1").getContext("2d");
         let configuration1,configuration2;
         
+        
+
         configuration1 = {
             type: 'bar',
             data: {
@@ -86,13 +88,13 @@ $.ajax({
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(48, 48, 48, 0.2)',
                         'rgba(255, 106, 186, 0.2)',
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
+                        'rgba(48, 48, 48, 1)',
                         'rgba(255, 106, 186, 1)',
                     ],
                     borderWidth: 1
@@ -103,14 +105,14 @@ $.ajax({
                     title:{
                         display : true,
                         text : "Counter Plot",
-                        fontSize: 25
+                        fontSize: 25,
                     },
                 },
                 responsive: true,
                 scales: {
                     y: {
                         beginAtZero: true
-                    }
+                    },
                 }
             }
         };
@@ -125,13 +127,13 @@ $.ajax({
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(48, 48, 48, 0.2)',
                         'rgba(255, 106, 186, 0.2)',
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
+                        'rgba(48, 48, 48, 1)',
                         'rgba(255, 106, 186, 1)',
                     ],
                     borderWidth: 1
