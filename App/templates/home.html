@@ -31,21 +31,25 @@
           </ul>
         </div>
       </div>
+      <span>Hello,{{ request.user }}</span>
+      <span class="ms-3 me-3"><a href="/app/logout"><button class="btn btn-danger">Logout</button></a></span>
   </nav>
 
-  <div class="container-fluid mx-auto">    
-    <form class="form-floating mt-5" method="POST" id="form-date-picker">
-      {% csrf_token %}
-      <input type="date" name="date" class="form-control" id="date-picker" style="width: 50%;">
-      <label for="date-picker">Date-Picker</label>
-      
-      <select name="shift" id="shift-picker" class="mt-1 form-select" style="width: 50%;">
-        <option selected value="Morning">Morning</option>
-        <option value="Afternoon">Afternoon</option>
-      </select>
-      
-      <button class="btn btn-success mt-2" id="modal-form-sub-btn" type="submit">submit</button>
-    </form>
+  <div class="container">
+    <div class="h-100 justify-content-center ">
+      <form class="form-floating mt-5" method="POST" id="form-date-picker">
+        {% csrf_token %}
+        <input type="date" name="date" class="form-control" id="date-picker" style="width: 50%;">
+        <label for="date-picker">Date-Picker</label>
+  
+        <select name="shift" id="shift-picker" class="mt-1 form-select" style="width: 50%;">
+          <option selected value="Morning">Morning</option>
+          <option value="Afternoon">Afternoon</option>
+        </select>
+        
+        <button class="btn btn-success mt-2" id="modal-form-sub-btn" type="submit">submit</button>
+      </form>
+    </div>    
   </div>
 
 </body>

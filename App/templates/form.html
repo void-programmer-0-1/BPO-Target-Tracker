@@ -32,6 +32,8 @@
             </ul>
           </div>
         </div>
+        <span>Hello,{{ request.user }}</span>
+        <span class="ms-3 me-3"><a href="/app/logout"><button class="btn btn-danger">Logout</button></a></span>
     </nav>
 
 
@@ -137,7 +139,7 @@
       "10" : "October",
       "11" : "November",
       "12" : "December"
-    }
+    };
 
     const date_process = (date) => {
       if(date[0] == '0'){
@@ -146,7 +148,7 @@
       else{
         return date;
       }
-    }
+    };
 
     $(document).ready(() => {
         $("#work-time").val("{{ shift }}");
